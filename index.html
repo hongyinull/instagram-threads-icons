@@ -49,7 +49,13 @@
   .tab[aria-selected="true"] { background: var(--card); color: var(--fg); font-weight: 550; }
   .tab em { font-style: normal; opacity: .55; margin-left: 5px; font-variant-numeric: tabular-nums; }
 
-  .row { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
+  .row { display: flex; align-items: center; gap: 16px; justify-content: space-between;
+    flex-wrap: wrap-reverse; }
+  @media (max-width: 640px) {
+    .row { gap: 0; }
+    .fmt { width: 100%; justify-content: flex-end; padding-bottom: 10px; }
+    .tabs { width: 100%; }
+  }
   .fmt { flex: none; color: var(--muted); font-size: 12.5px; padding-bottom: 14px;
     display: flex; align-items: center; gap: 6px; white-space: nowrap; }
   .fmt select { font: inherit; font-size: 12.5px; color: var(--fg); background: var(--card);
