@@ -13,7 +13,7 @@ import os
 
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 DIST = os.path.join(ROOT, "dist")
-CDN = "https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main"
+CDN = "https://cdn.jsdelivr.net/gh/hongyinull/instagram-threads-icons@main"
 
 HELPERS = '''
 /** Every icon in the set. */

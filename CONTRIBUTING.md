@@ -2,7 +2,7 @@
 
 ## Reporting a missing or broken icon
 
-[Open an issue](https://github.com/hongyinull/meta-icons/issues) with:
+[Open an issue](https://github.com/hongyinull/instagram-threads-icons/issues) with:
 
 - The icon's name, or where you saw it in Instagram / Threads
 - A screenshot if you have one

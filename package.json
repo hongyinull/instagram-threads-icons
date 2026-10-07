@@ -1,11 +1,23 @@
 {
-  "name": "@hongyinull/meta-icons",
+  "name": "instagram-threads-icons",
   "version": "1.0.0",
   "description": "2,055 icons from Instagram and Threads — SVG and @3x PNG, with a searchable manifest, sprites and CDN URLs",
-  "keywords": ["icons", "icon-set", "svg", "svg-icons", "instagram", "threads", "meta", "ui-icons"],
-  "homepage": "https://hongyinull.github.io/meta-icons/",
-  "repository": { "type": "git", "url": "git+https://github.com/hongyinull/meta-icons.git" },
-  "bugs": "https://github.com/hongyinull/meta-icons/issues",
+  "keywords": [
+    "icons",
+    "icon-set",
+    "svg",
+    "svg-icons",
+    "instagram",
+    "threads",
+    "meta",
+    "ui-icons"
+  ],
+  "homepage": "https://hongyinull.github.io/instagram-threads-icons/",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/hongyinull/instagram-threads-icons.git"
+  },
+  "bugs": "https://github.com/hongyinull/instagram-threads-icons/issues",
   "license": "MIT",
   "author": "hongyinull",
   "type": "module",
@@ -22,7 +34,14 @@
     "./icons/*": "./icons/*",
     "./sprites/*": "./sprites/*"
   },
-  "files": ["dist", "icons", "sprites", "icons.json", "README.md", "LICENSE"],
+  "files": [
+    "dist",
+    "icons",
+    "sprites",
+    "icons.json",
+    "README.md",
+    "LICENSE"
+  ],
   "sideEffects": false,
   "scripts": {
     "build": "python3 tools/build_manifest.py && python3 tools/build_sprites.py && python3 tools/build_package.py",

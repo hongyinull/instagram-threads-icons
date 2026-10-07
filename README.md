@@ -1,6 +1,6 @@
 <div align="center">
 
-# Meta Icons
+# Instagram & Threads Icons
 
 **The icon set behind Instagram and Threads — extracted, organised and searchable.**
 
@@ -8,12 +8,12 @@
 [![Unique](https://img.shields.io/badge/unique%20names-965-black?style=flat-square)](#whats-inside)
 [![Format](https://img.shields.io/badge/format-SVG%20%2B%20PNG-black?style=flat-square)](#whats-inside)
 [![License](https://img.shields.io/badge/code-MIT-black?style=flat-square)](LICENSE)
-[![npm](https://img.shields.io/npm/v/@hongyinull/meta-icons?style=flat-square&color=black&label=npm)](https://www.npmjs.com/package/@hongyinull/meta-icons)
-[![Browse](https://img.shields.io/badge/browse-online-black?style=flat-square)](https://hongyinull.github.io/meta-icons/)
+[![npm](https://img.shields.io/npm/v/instagram-threads-icons?style=flat-square&color=black&label=npm)](https://www.npmjs.com/package/instagram-threads-icons)
+[![Browse](https://img.shields.io/badge/browse-online-black?style=flat-square)](https://hongyinull.github.io/instagram-threads-icons/)
 
 <img src="previews/hero.png" width="760" alt="A grid of Instagram icons: heart, camera, home, search, direct, comment, save, settings and more">
 
-[**Browse all icons →**](https://hongyinull.github.io/meta-icons/)
+[**Browse all icons →**](https://hongyinull.github.io/instagram-threads-icons/)
 
 </div>
 
@@ -28,14 +28,14 @@ This repository collects **2,055 icons** — **965 unique symbols** across outli
 ### npm
 
 ```bash
-npm install @hongyinull/meta-icons
+npm install @hongyinull/instagram-threads-icons
 ```
 
 ```js
-import { find, url, sprite, filter } from '@hongyinull/meta-icons'
+import { find, url, sprite, filter } from '@hongyinull/instagram-threads-icons'
 
 find('heart')            // → { name: 'heart', slug: 'heart-outline', path: '…', viewBox: '0 0 24 24' }
-url('heart')             // → https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/icons/…
+url('heart')             // → https://cdn.jsdelivr.net/gh/hongyinull/instagram-threads-icons@main/icons/…
 sprite('heart')          // → …/sprites/instagram-web.svg#IGDSHeartPanoOutlineIcon
 filter({ name: 'heart', style: 'filled' })   // → every filled heart, all sizes
 ```
@@ -49,7 +49,7 @@ Every icon is served by jsDelivr with the correct MIME type, so it works
 directly in `<img>`:
 
 ```html
-<img src="https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/icons/instagram/web/IGDSHeartPanoOutlineIcon.svg"
+<img src="https://cdn.jsdelivr.net/gh/hongyinull/instagram-threads-icons@main/icons/instagram/web/IGDSHeartPanoOutlineIcon.svg"
      width="24" alt="Like">
 ```
 
@@ -60,7 +60,7 @@ directly in `<img>`:
 
 ```html
 <svg width="24" height="24" style="color: #e1306c">
-  <use href="https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/sprites/instagram-web.svg#IGDSHeartPanoOutlineIcon"/>
+  <use href="https://cdn.jsdelivr.net/gh/hongyinull/instagram-threads-icons@main/sprites/instagram-web.svg#IGDSHeartPanoOutlineIcon"/>
 </svg>
 ```
 
@@ -73,10 +73,10 @@ directly in `<img>`:
 ### Download
 
 ```bash
-git clone https://github.com/hongyinull/meta-icons.git
+git clone https://github.com/hongyinull/instagram-threads-icons.git
 ```
 
-Or grab one file from the [browse page](https://hongyinull.github.io/meta-icons/) —
+Or grab one file from the [browse page](https://hongyinull.github.io/instagram-threads-icons/) —
 pick a copy format (CDN URL, `<img>` tag, SVG markup, sprite reference) and click an icon.
 
 ## Styling
@@ -152,13 +152,13 @@ jq -r '.icons[] | select(.size==24 and .format=="svg") | .slug' icons.json
 
 ## Browse
 
-[**hongyinull.github.io/meta-icons**](https://hongyinull.github.io/meta-icons/) — search by name, filter by collection, click to copy a path. Dark mode included.
+[**hongyinull.github.io/instagram-threads-icons**](https://hongyinull.github.io/instagram-threads-icons/) — search by name, filter by collection, click to copy a path. Dark mode included.
 
 The same page works offline: open `index.html` directly, no server or build step needed.
 
 ## Contributing
 
-Missing an icon, or found one that renders wrong? [Open an issue](https://github.com/hongyinull/meta-icons/issues) — include the icon name and where you saw it. See [CONTRIBUTING.md](CONTRIBUTING.md) for how the collection is updated.
+Missing an icon, or found one that renders wrong? [Open an issue](https://github.com/hongyinull/instagram-threads-icons/issues) — include the icon name and where you saw it. See [CONTRIBUTING.md](CONTRIBUTING.md) for how the collection is updated.
 
 ## Licence
 
@@ -166,4 +166,4 @@ The tooling, manifest, organisation and documentation in this repository are MIT
 
 **The icon artwork is not.** It is the property of Meta Platforms, Inc., extracted from publicly served Instagram and Threads web assets and the Instagram iOS app (build 436). This repository is an unofficial reference for design and research. It is not affiliated with, endorsed by, or sponsored by Meta.
 
-Instagram, Threads, WhatsApp, Meta and their logos are trademarks of Meta Platforms, Inc. Evaluate your own risk before using these assets commercially, or obtain permission through [Meta's brand guidelines](https://about.meta.com/brand/resources/). Takedown requests will be honoured — [open an issue](https://github.com/hongyinull/meta-icons/issues) or email the maintainer.
+Instagram, Threads, WhatsApp, Meta and their logos are trademarks of Meta Platforms, Inc. Evaluate your own risk before using these assets commercially, or obtain permission through [Meta's brand guidelines](https://about.meta.com/brand/resources/). Takedown requests will be honoured — [open an issue](https://github.com/hongyinull/instagram-threads-icons/issues) or email the maintainer.
