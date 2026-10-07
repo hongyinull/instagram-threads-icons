@@ -49,6 +49,12 @@
   .tab[aria-selected="true"] { background: var(--card); color: var(--fg); font-weight: 550; }
   .tab em { font-style: normal; opacity: .55; margin-left: 5px; font-variant-numeric: tabular-nums; }
 
+  .row { display: flex; align-items: center; gap: 16px; justify-content: space-between; }
+  .fmt { flex: none; color: var(--muted); font-size: 12.5px; padding-bottom: 14px;
+    display: flex; align-items: center; gap: 6px; white-space: nowrap; }
+  .fmt select { font: inherit; font-size: 12.5px; color: var(--fg); background: var(--card);
+    border: 1px solid var(--line); border-radius: 7px; padding: 5px 8px; }
+
   main { max-width: 1280px; margin: 0 auto; padding: 24px; }
   .grid { display: grid; gap: 10px; grid-template-columns: repeat(auto-fill, minmax(112px, 1fr)); }
   .cell { position: relative; border: 1px solid var(--line); border-radius: 10px;
@@ -90,14 +96,25 @@
       <input id="q" type="search" placeholder="Search icons — heart, camera, arrow, settings…"
              autocomplete="off" autofocus>
     </div>
-    <div class="tabs" id="tabs"></div>
+    <div class="row">
+      <div class="tabs" id="tabs"></div>
+      <label class="fmt">Copy as
+        <select id="fmt">
+          <option value="cdn">CDN URL</option>
+          <option value="img">&lt;img&gt; tag</option>
+          <option value="svg">SVG markup</option>
+          <option value="use">sprite &lt;use&gt;</option>
+          <option value="path">repo path</option>
+        </select>
+      </label>
+    </div>
   </div>
 </header>
 
 <main><div class="grid" id="grid"></div></main>
 
 <footer>
-  Click any icon to copy its path. Press <kbd>/</kbd> to search.
+  Click any icon to copy it in the selected format. Press <kbd>/</kbd> to search.
   Icon artwork © Meta Platforms, Inc. — unofficial reference, not affiliated with Meta.
 </footer>
 
@@ -170,12 +187,7 @@ function render() {
     const span = document.createElement('span');
     span.textContent = label;
     cell.append(img, span);
-    cell.onclick = () => {
-      navigator.clipboard.writeText(path + '/' + file).then(
-        () => flash('Path copied'),
-        () => flash('Copy failed')
-      );
-    };
+    cell.onclick = () => copy(path, file);
     frag.appendChild(cell);
   }
   grid.appendChild(frag);
@@ -186,6 +198,37 @@ function render() {
     p.textContent = 'Showing ' + LIMIT + ' of ' + hits.length + ' — refine your search to see the rest.';
     grid.appendChild(p);
   }
+}
+
+const CDN = 'https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main';
+
+async function copy(path, file) {
+  const mode = document.getElementById('fmt').value;
+  const cdnUrl = CDN + '/' + path + '/' + file;
+  let text, label;
+
+  if (mode === 'cdn')       { text = cdnUrl;                                  label = 'CDN URL copied'; }
+  else if (mode === 'path') { text = path + '/' + file;                       label = 'Repo path copied'; }
+  else if (mode === 'img')  { text = '<img src="' + cdnUrl + '" width="24" alt="">'; label = '<img> tag copied'; }
+  else if (mode === 'use') {
+    if (!file.endsWith('.svg')) { flash('Sprites are SVG only'); return; }
+    const parts = path.split('/');
+    const id = file.replace(/\.svg$/, '');
+    text = '<svg width="24" height="24"><use href="' + CDN + '/sprites/' +
+           parts[1] + '-' + parts[2] + '.svg#' + id + '"/></svg>';
+    label = 'Sprite reference copied';
+  } else {
+    if (!file.endsWith('.svg')) { flash('SVG markup is SVG only'); return; }
+    try {
+      const res = await fetch(path + '/' + file);
+      text = (await res.text()).trim();
+      label = 'SVG markup copied';
+    } catch {
+      text = cdnUrl;
+      label = 'Offline — CDN URL copied instead';
+    }
+  }
+  navigator.clipboard.writeText(text).then(() => flash(label), () => flash('Copy failed'));
 }
 
 q.addEventListener('input', render);

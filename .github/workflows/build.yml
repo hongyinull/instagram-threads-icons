@@ -1,0 +1,52 @@
+name: Build
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+
+jobs:
+  verify:
+    name: Manifest, sprites and package are current
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-python@v5
+        with:
+          python-version: "3.12"
+
+      - name: Rebuild generated files
+        run: |
+          python3 tools/build_manifest.py
+          python3 tools/build_sprites.py
+          python3 tools/build_package.py
+
+      - name: Fail if anything is out of date
+        run: |
+          if [ -n "$(git status --porcelain)" ]; then
+            echo "::error::Generated files are stale. Run the three scripts in tools/ and commit the result."
+            git --no-pager diff --stat
+            exit 1
+          fi
+          echo "All generated files match their sources."
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: "22"
+
+      - name: Smoke-test both module formats
+        run: |
+          node --input-type=module -e "
+            import { icons, find, url, sprite } from './dist/index.mjs';
+            if (!icons.length) throw new Error('manifest is empty');
+            if (!find('heart')) throw new Error('find() failed');
+            if (!url('heart').startsWith('https://')) throw new Error('url() failed');
+            if (!sprite('heart').includes('#')) throw new Error('sprite() failed');
+            console.log('ESM ok —', icons.length, 'icons');
+          "
+          node -e "
+            const { icons, find } = require('./dist/index.cjs');
+            if (!icons.length || !find('camera')) throw new Error('CJS exports broken');
+            console.log('CJS ok —', icons.length, 'icons');
+          "

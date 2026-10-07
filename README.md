@@ -8,6 +8,7 @@
 [![Unique](https://img.shields.io/badge/unique%20names-965-black?style=flat-square)](#whats-inside)
 [![Format](https://img.shields.io/badge/format-SVG%20%2B%20PNG-black?style=flat-square)](#whats-inside)
 [![License](https://img.shields.io/badge/code-MIT-black?style=flat-square)](LICENSE)
+[![npm](https://img.shields.io/npm/v/@hongyinull/meta-icons?style=flat-square&color=black&label=npm)](https://www.npmjs.com/package/@hongyinull/meta-icons)
 [![Browse](https://img.shields.io/badge/browse-online-black?style=flat-square)](https://hongyinull.github.io/meta-icons/)
 
 <img src="previews/hero.png" width="760" alt="A grid of Instagram icons: heart, camera, home, search, direct, comment, save, settings and more">
@@ -24,39 +25,79 @@ This repository collects **2,055 icons** — **965 unique symbols** across outli
 
 ## Install
 
-```bash
-# Clone
-git clone https://github.com/hongyinull/meta-icons.git
+### npm
 
-# Or download a single icon
-curl -O https://raw.githubusercontent.com/hongyinull/meta-icons/main/icons/instagram/web/IGDSHeartPanoOutlineIcon.svg
+```bash
+npm install @hongyinull/meta-icons
 ```
 
-## Usage
+```js
+import { find, url, sprite, filter } from '@hongyinull/meta-icons'
 
-Every SVG uses `fill="currentColor"`, so icons inherit the text colour of their container — no editing required.
+find('heart')            // → { name: 'heart', slug: 'heart-outline', path: '…', viewBox: '0 0 24 24' }
+url('heart')             // → https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/icons/…
+sprite('heart')          // → …/sprites/instagram-web.svg#IGDSHeartPanoOutlineIcon
+filter({ name: 'heart', style: 'filled' })   // → every filled heart, all sizes
+```
+
+Ships ESM, CommonJS and TypeScript types. The manifest is inlined, so no file
+reads and no network calls.
+
+### CDN — no install
+
+Every icon is served by jsDelivr with the correct MIME type, so it works
+directly in `<img>`:
 
 ```html
-<!-- Inherits the parent's colour -->
-<span style="color: #e1306c">
-  <img src="icons/instagram/web/IGDSHeartPanoFilledIcon.svg" width="24" alt="Like">
-</span>
+<img src="https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/icons/instagram/web/IGDSHeartPanoOutlineIcon.svg"
+     width="24" alt="Like">
 ```
 
+> Use jsDelivr, not `raw.githubusercontent.com` — GitHub serves SVG as
+> `text/plain`, which browsers refuse to render as an image.
+
+### Sprites — one request for a whole collection
+
+```html
+<svg width="24" height="24" style="color: #e1306c">
+  <use href="https://cdn.jsdelivr.net/gh/hongyinull/meta-icons@main/sprites/instagram-web.svg#IGDSHeartPanoOutlineIcon"/>
+</svg>
+```
+
+| Sprite | Symbols | Size |
+|---|---:|---:|
+| `sprites/instagram-web.svg` | 322 | 213 KB |
+| `sprites/threads-web.svg` | 226 | 313 KB |
+| `sprites/instagram-vector.svg` | 24 | 59 KB |
+
+### Download
+
+```bash
+git clone https://github.com/hongyinull/meta-icons.git
+```
+
+Or grab one file from the [browse page](https://hongyinull.github.io/meta-icons/) —
+pick a copy format (CDN URL, `<img>` tag, SVG markup, sprite reference) and click an icon.
+
+## Styling
+
+Every SVG uses `fill="currentColor"`, so icons inherit the text colour of their
+container — no editing, no per-colour copies.
+
 ```css
-/* Inline SVGs recolour with plain CSS */
-.icon { width: 24px; height: 24px; color: currentColor; }
+.icon { width: 24px; height: 24px; color: #737373; }
 .icon:hover { color: #e1306c; }
 ```
 
 ```jsx
-// React — inline the SVG to make it themeable
+// React — inline the SVG so it stays themeable
 import { ReactComponent as Heart } from './icons/instagram/web/IGDSHeartPanoOutlineIcon.svg'
 
 <Heart className="w-6 h-6 text-neutral-500" />
 ```
 
-For iOS, the PNGs are `@3x`. Drop them into an Asset Catalog and Xcode will pick up the scale from the filename.
+For iOS, the PNGs are `@3x`. Drop them into an Asset Catalog and Xcode reads the
+scale from the filename.
 
 ## What's inside
 
@@ -68,6 +109,10 @@ For iOS, the PNGs are `@3x`. Drop them into an Asset Catalog and Xcode will pick
 | Threads Web | `icons/threads/web/` | 226 | SVG |
 
 Icons that fail to render are kept in `_broken/` inside each collection rather than deleted, so nothing is silently lost.
+
+Generated artefacts — `icons.json`, `sprites/` and `dist/` — are rebuilt by the
+scripts in `tools/` and verified on every push by CI, so they can never drift
+out of sync with the icon files.
 
 ### Naming
 
