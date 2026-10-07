@@ -1,65 +1,124 @@
+<div align="center">
+
 # Meta Icons
 
-Instagram 與 Threads 的圖示收藏，共 **2,055 個**，含 SVG 向量與 @3x PNG。
+**The icon set behind Instagram and Threads — extracted, organised and searchable.**
 
-做 App 或網頁時常常需要對照 Instagram、Threads 的介面圖示，但 Meta 沒有公開的圖示庫，官方設計系統（IGDS）也不對外。這個倉庫把散落在網頁資源與 App 資源包裡的圖示整理成可以搜尋、可以直接取用的形式。
+[![Icons](https://img.shields.io/badge/icons-2%2C055-black?style=flat-square)](#whats-inside)
+[![Unique](https://img.shields.io/badge/unique%20names-965-black?style=flat-square)](#whats-inside)
+[![Format](https://img.shields.io/badge/format-SVG%20%2B%20PNG-black?style=flat-square)](#whats-inside)
+[![License](https://img.shields.io/badge/code-MIT-black?style=flat-square)](LICENSE)
+[![Browse](https://img.shields.io/badge/browse-online-black?style=flat-square)](https://hongyinull.github.io/meta-icons/)
 
-## 快速預覽
+<img src="previews/hero.png" width="760" alt="A grid of Instagram icons: heart, camera, home, search, direct, comment, save, settings and more">
 
-開啟 [`index.html`](index.html) 就能瀏覽全部圖示，支援搜尋與一鍵複製路徑。不需要安裝任何東西，直接用瀏覽器打開即可。
+[**Browse all icons →**](https://hongyinull.github.io/meta-icons/)
 
-| 總覽圖 | 內容 |
-|---|---|
-| [previews/instagram-overview.png](previews/instagram-overview.png) | Instagram 網頁版圖示總覽 |
-| [previews/threads-overview.png](previews/threads-overview.png) | Threads 網頁版圖示總覽 |
-| [previews/vector-comparison.png](previews/vector-comparison.png) | 向量版與原圖的對照 |
+</div>
 
-## 內容
+---
 
+Meta has never published the icon set used in Instagram and Threads. Their design system (IGDS) is internal, and the assets are scattered across web bundles and app resource archives, under names nobody can search.
+
+This repository collects **2,055 icons** — **965 unique symbols** across outline and filled styles — and gives them consistent names, a machine-readable manifest, and a search page that works offline.
+
+## Install
+
+```bash
+# Clone
+git clone https://github.com/hongyinull/meta-icons.git
+
+# Or download a single icon
+curl -O https://raw.githubusercontent.com/hongyinull/meta-icons/main/icons/instagram/web/IGDSHeartPanoOutlineIcon.svg
 ```
-icons/
-├── instagram/
-│   ├── web/        322 個 SVG   網頁版圖示（IGDS、FBNucleus 系列）
-│   │   └── _broken/ 13 個       無法正常顯示的，保留備查
-│   ├── ios/       1483 個 PNG   iOS 版圖示，全部 @3x
-│   └── vector/      24 個 SVG   向量化版本（部分 iOS 圖示與筆刷工具）
-└── threads/
-    └── web/        226 個 SVG   Threads 網頁版圖示（內部代號 Barcelona）
-        └── _broken/ 11 個
-```
 
-### 命名規則
+## Usage
 
-檔名沿用 Meta 內部的命名，看得懂規則就很好找：
-
-- **`IGDS...`** — Instagram Design System，網頁版主要系列
-- **`Barcelona...`** — Threads 的內部代號
-- **`ig_icon_<名稱>_<樣式>_<尺寸>`** — iOS 版，例如 `ig_icon_heart_filled_24@3x.png`
-  - 樣式：`outline`（線條）、`filled`（實心）
-  - 尺寸：10 / 12 / 16 / 18 / 20 / 24 / 44 等（單位為點，實際像素為三倍）
-
-搜尋時直接用英文關鍵字，例如 `heart`、`camera`、`arrow`、`chevron`、`settings`。
-
-## 使用方式
-
-SVG 可以直接內嵌到網頁或丟進 Figma；PNG 是 @3x，用於 iOS 專案時放進 Asset Catalog 即可。
+Every SVG uses `fill="currentColor"`, so icons inherit the text colour of their container — no editing required.
 
 ```html
-<img src="icons/instagram/web/IGDSHeartPanoOutlineIcon.svg" width="24" alt="">
+<!-- Inherits the parent's colour -->
+<span style="color: #e1306c">
+  <img src="icons/instagram/web/IGDSHeartPanoFilledIcon.svg" width="24" alt="Like">
+</span>
 ```
-
-深色背景下，單色 SVG 可以用 CSS 直接反轉：
 
 ```css
-.icon-dark { filter: invert(1); }
+/* Inline SVGs recolour with plain CSS */
+.icon { width: 24px; height: 24px; color: currentColor; }
+.icon:hover { color: #e1306c; }
 ```
 
-## 來源與授權
+```jsx
+// React — inline the SVG to make it themeable
+import { ReactComponent as Heart } from './icons/instagram/web/IGDSHeartPanoOutlineIcon.svg'
 
-**這些圖示的著作權屬於 Meta Platforms, Inc.**，擷取自 Instagram 與 Threads 的公開網頁資源及 iOS App 資源包（版本 436）。本倉庫僅作為設計參考與研究用途的整理，不主張任何權利，也不隸屬於 Meta 或獲得其授權。
+<Heart className="w-6 h-6 text-neutral-500" />
+```
 
-Instagram、Threads、WhatsApp、Meta 及其標誌為 Meta Platforms, Inc. 的註冊商標。
+For iOS, the PNGs are `@3x`. Drop them into an Asset Catalog and Xcode will pick up the scale from the filename.
 
-商業使用前請自行評估風險，或依照 [Meta 品牌使用規範](https://about.meta.com/brand/resources/) 取得授權。若 Meta 要求移除，本倉庫會配合下架。
+## What's inside
 
-整理與向量化的部分由 [@hongyinull](https://github.com/hongyinull) 完成。
+| Collection | Path | Count | Format |
+|---|---|---:|---|
+| Instagram Web | `icons/instagram/web/` | 322 | SVG |
+| Instagram iOS | `icons/instagram/ios/` | 1,483 | PNG `@3x` |
+| Instagram Vector | `icons/instagram/vector/` | 24 | SVG |
+| Threads Web | `icons/threads/web/` | 226 | SVG |
+
+Icons that fail to render are kept in `_broken/` inside each collection rather than deleted, so nothing is silently lost.
+
+### Naming
+
+Files keep their original Meta names so you can trace them back to the source. The searchable, normalised names live in [`icons.json`](icons.json):
+
+```json
+{
+  "name": "heart",
+  "slug": "heart-outline-24",
+  "file": "ig_icon_heart_outline_24@3x.png",
+  "path": "icons/instagram/ios/ig_icon_heart_outline_24@3x.png",
+  "platform": "instagram",
+  "variant": "ios",
+  "format": "png",
+  "style": "outline",
+  "size": 24
+}
+```
+
+Original prefixes, for reference:
+
+- `IGDS…` — Instagram Design System (web)
+- `Barcelona…` — Threads (internal codename)
+- `ig_icon_<name>_<style>_<size>` — Instagram iOS
+
+Styles are `outline` and `filled`. Sizes are in points: 10, 12, 16, 18, 20, 24, 44.
+
+### Query the manifest
+
+```bash
+# Every filled heart icon
+jq '.icons[] | select(.name=="heart" and .style=="filled") | .path' icons.json
+
+# Everything available at 24pt in SVG
+jq -r '.icons[] | select(.size==24 and .format=="svg") | .slug' icons.json
+```
+
+## Browse
+
+[**hongyinull.github.io/meta-icons**](https://hongyinull.github.io/meta-icons/) — search by name, filter by collection, click to copy a path. Dark mode included.
+
+The same page works offline: open `index.html` directly, no server or build step needed.
+
+## Contributing
+
+Missing an icon, or found one that renders wrong? [Open an issue](https://github.com/hongyinull/meta-icons/issues) — include the icon name and where you saw it. See [CONTRIBUTING.md](CONTRIBUTING.md) for how the collection is updated.
+
+## Licence
+
+The tooling, manifest, organisation and documentation in this repository are MIT licensed — see [LICENSE](LICENSE).
+
+**The icon artwork is not.** It is the property of Meta Platforms, Inc., extracted from publicly served Instagram and Threads web assets and the Instagram iOS app (build 436). This repository is an unofficial reference for design and research. It is not affiliated with, endorsed by, or sponsored by Meta.
+
+Instagram, Threads, WhatsApp, Meta and their logos are trademarks of Meta Platforms, Inc. Evaluate your own risk before using these assets commercially, or obtain permission through [Meta's brand guidelines](https://about.meta.com/brand/resources/). Takedown requests will be honoured — [open an issue](https://github.com/hongyinull/meta-icons/issues) or email the maintainer.
