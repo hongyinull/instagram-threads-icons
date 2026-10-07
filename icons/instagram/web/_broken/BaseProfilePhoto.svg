@@ -1,0 +1,17 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="currentColor">
+  <circle cx="50%" cy="50%" r="calc(50% - "+F+"px)"/>
+  <rect height="calc(100% - "+2*F+"px)" width="calc(100% - "+2*F+"px)"/>
+  <circle cx="50%" cy="50%" fill="transparent"/>
+  <rect fill="transparent" height="calc(100% - "+A+"px)" width="calc(100% - "+A+"px)"/>
+  <rect height="calc(100% - "+2*F+"px)" width="calc(100% - "+2*F+"px)"/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle/>
+  <circle r="calc(50% + "+t.gap+"px)"/>
+  <rect height="100%" width="100%"/>
+</svg>
