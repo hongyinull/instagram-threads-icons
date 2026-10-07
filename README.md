@@ -8,7 +8,6 @@
 [![Unique](https://img.shields.io/badge/unique%20names-965-black?style=flat-square)](#whats-inside)
 [![Format](https://img.shields.io/badge/format-SVG%20%2B%20PNG-black?style=flat-square)](#whats-inside)
 [![License](https://img.shields.io/badge/code-MIT-black?style=flat-square)](LICENSE)
-[![npm](https://img.shields.io/npm/v/instagram-threads-icons?style=flat-square&color=black&label=npm)](https://www.npmjs.com/package/instagram-threads-icons)
 [![Browse](https://img.shields.io/badge/browse-online-black?style=flat-square)](https://hongyinull.github.io/instagram-threads-icons/)
 
 <img src="previews/hero.png" width="760" alt="A grid of Instagram icons: heart, camera, home, search, direct, comment, save, settings and more">
@@ -25,14 +24,16 @@ This repository collects **2,055 icons** — **965 unique symbols** across outli
 
 ## Install
 
-### npm
+### JavaScript / TypeScript
+
+Not published to the npm registry — install straight from GitHub:
 
 ```bash
-npm install @hongyinull/instagram-threads-icons
+npm install github:hongyinull/instagram-threads-icons
 ```
 
 ```js
-import { find, url, sprite, filter } from '@hongyinull/instagram-threads-icons'
+import { find, url, sprite, filter } from 'instagram-threads-icons'
 
 find('heart')            // → { name: 'heart', slug: 'heart-outline', path: '…', viewBox: '0 0 24 24' }
 url('heart')             // → https://cdn.jsdelivr.net/gh/hongyinull/instagram-threads-icons@main/icons/…
